@@ -1,24 +1,25 @@
-import logo from './logo.svg';
 import './App.css';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { useState } from 'react';
+import { Adder } from './Components/Adder';
+import { UserDetail } from './Components/UserDetail';
+
 
 function App() {
+
+  const githubUsers = ["ArnoldIza","kevindavid17","jouxjr7","AngelXS","JorgePerezEC","aleste-dx",]
+
+  const [lista, setLista] = useState(githubUsers)
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path='/api/users'   element={<Adder lista={lista}/>}/>
+        <Route path={'/api/user/:username/'}   element={<UserDetail/>}/>
+      </Routes>
+    </BrowserRouter>
+
+
   );
 }
 
